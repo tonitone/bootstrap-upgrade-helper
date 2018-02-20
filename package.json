@@ -1,0 +1,32 @@
+{
+  "name": "bootstrap-upgrade-from-v-3-to-v-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/grunt ci",
+    "replace": "node replace-it.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonitone/bootstrap-upgrade-from-v-3-to-v-4"
+  },
+  "keywords": [],
+  "author": "Toni Ivanisevic <030toni@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/tonitone/bootstrap-upgrade-from-v-3-to-v-4/issues"
+  },
+  "dependencies": {
+    "replace-in-file": "^3.1.1"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt": "^0.4.5",
+    "grunt-mocha-cli": "^2.0.0",
+    "grunt-complexity": "^0.3.0",
+    "grunt-cli": "^0.1.13"
+  }
+}

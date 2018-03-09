@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"sorry no tests :) \"",
-    "replace": "node index.js"
+    "replace": "npm run",
+    "replaceSmall": "npm run copySmall && node index.js ./fixture-small.html",
+    "replaceLarge": "npm run copyLarge && node index.js",
+    "copySmall": "cp fixture-small.html.bak fixture-small.html",
+    "copyLarge": "cp fixture-bootstrap-3-theme.html.bak fixture-bootstrap-3-theme.html"
   },
   "repository": {
     "type": "git",

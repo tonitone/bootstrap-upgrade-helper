@@ -1,14 +1,13 @@
 'use strict';
 
-//Load the library and specify options
 const path = require('path');
 const fs = require('fs');
 const args = process.argv.slice(2);
 const filesToReplace = args[0] || './fixture-small.html';
 const fileExtension = args[1] || '.html';
 
-let contentAsArray = [], returnTransformedCSSSelectorToHTMLAttribute,
-isACSSClassSelector, returnCleanCsvString, 
+let upgradeRulesAsLines = [], returnTransformedCSSSelectorToHTMLAttribute,
+  isACSSClassSelector, returnCleanCsvString,
 regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g;
 
 returnTransformedCSSSelectorToHTMLAttribute = function (str) {
@@ -19,7 +18,7 @@ isACSSClassSelector = function (str) {
   return str.charAt(0) === '.';
 };
 
-returnCleanCsvString = function(searchString){
+returnCleanCsvString = function (searchString) {
   searchString = searchString.trim();
   if (isACSSClassSelector(searchString)) {
     searchString = searchString.substr(1);
@@ -31,28 +30,28 @@ let isLineNotEmptyAndDontStartWithAHash = function (oneLine) {
   return oneLine !== '' && oneLine.charAt(0) !== '#';
 };
 
-fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRules) {
-  contentAsArray = upgradeRules.split("\n");
-  //console.log(contentAsArray)
-  //console.log(typeof contentAsArray)
+fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileContent) {
+  upgradeRulesAsLines = upgradeRulesFileContent.split("\n");
 
-  fs.readFile(filesToReplace, 'utf8', function (err,htmlContent) {
+  fs.readFile(filesToReplace, 'utf8', function (err,fileToReplaceFileContent) {
     if (err) {
       return console.log(err);
     }
 
     let result;
 
-    while (result = regExForHtmlClassAttribute.exec(htmlContent)) {
+    while (result = regExForHtmlClassAttribute.exec(fileToReplaceFileContent)) {
       let htmlClassAttributesString = result[2],
-      htmlClassAttributes = htmlClassAttributesString.split(' ');
+        htmlClassAttributes = htmlClassAttributesString.split(' '),
+        oneLine;
 
-      for (var oneLine of contentAsArray) {
+      for (oneLine of upgradeRulesAsLines) {
         if (isLineNotEmptyAndDontStartWithAHash(oneLine)) {
 
           let csvColumns = oneLine.split(';'),
-          searchString = returnCleanCsvString(csvColumns[0]),
-          replaceString = returnCleanCsvString(csvColumns[1]);
+            searchString = returnCleanCsvString(csvColumns[0]),
+            replaceString = returnCleanCsvString(csvColumns[1]),
+            itemIndexToReplace;
 
           replaceString = returnTransformedCSSSelectorToHTMLAttribute(replaceString);
           //if(searchString.indexOf('label') !== -1)
@@ -64,11 +63,10 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRules) {
           }
         }
       }
-      //console.log(htmlClassAttributes);
+
       let htmlClassAttributesNew = htmlClassAttributes.join(' ');
-      if(htmlClassAttributesString !== htmlClassAttributesNew){
-        htmlContent = htmlContent.replace(htmlClassAttributesString, htmlClassAttributesNew);
-        htmlContent = htmlContent.replace('label-default', '');
+      if (htmlClassAttributesString !== htmlClassAttributesNew) {
+        fileToReplaceFileContent = fileToReplaceFileContent.replace(htmlClassAttributesString, htmlClassAttributesNew);
         console.log(htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
       }
     }

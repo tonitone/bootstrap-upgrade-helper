@@ -4,13 +4,12 @@
 const path = require('path');
 const fs = require('fs');
 const args = process.argv.slice(2);
-const filesToReplace = args[0];
+const filesToReplace = args[0] || './fixture-small.html';
 const fileExtension = args[1] || '.html';
 
-let htmlFile = './fixture-small.html';
-
 let contentAsArray = [], returnTransformedCSSSelectorToHTMLAttribute,
-isACSSClassSelector, returnCleanCsvString;
+isACSSClassSelector, returnCleanCsvString, 
+regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g;
 
 returnTransformedCSSSelectorToHTMLAttribute = function (str) {
   return str.replace(".", " ");
@@ -37,13 +36,12 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRules) {
   //console.log(contentAsArray)
   //console.log(typeof contentAsArray)
 
-  fs.readFile(htmlFile, 'utf8', function (err,htmlContent) {
+  fs.readFile(filesToReplace, 'utf8', function (err,htmlContent) {
     if (err) {
       return console.log(err);
     }
 
-    let regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g,
-    result;
+    let result;
 
     while (result = regExForHtmlClassAttribute.exec(htmlContent)) {
       let htmlClassAttributesString = result[2],
@@ -57,10 +55,12 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRules) {
           replaceString = returnCleanCsvString(csvColumns[1]);
 
           replaceString = returnTransformedCSSSelectorToHTMLAttribute(replaceString);
-
+          //if(searchString.indexOf('label') !== -1)
+//console.log(searchString, replaceString)
           let itemIndexToReplace = htmlClassAttributes.indexOf(searchString);
           if(itemIndexToReplace !== -1) {
             htmlClassAttributes[itemIndexToReplace] = replaceString;
+          //  console.log(htmlClassAttributes);
           }
         }
       }
@@ -72,7 +72,7 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRules) {
         console.log(htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
       }
     }
-    fs.writeFile(htmlFile, htmlContent, 'utf8', function (err) {
+    fs.writeFile(filesToReplace, htmlContent, 'utf8', function (err) {
        if (err) return console.log(err);
     });
   });

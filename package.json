@@ -5,24 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"sorry no tests :) \"",
-    "replace": "npm run",
+    "replace": "npm run replaceSmall",
     "replaceSmall": "npm run copySmall && node index.js ./fixture-small.html",
-    "replaceLarge": "npm run copyLarge && node index.js",
+    "replaceLarge": "npm run copyLarge && node index.js ./fixture-bootstrap-3-theme.html",
     "copySmall": "cp fixture-small.html.bak fixture-small.html",
     "copyLarge": "cp fixture-bootstrap-3-theme.html.bak fixture-bootstrap-3-theme.html"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tonitone/bootstrap-upgrade-from-v-3-to-v-4"
+    "url": "https://github.com/tonitone/css-class-replacer-for-bootstrap-upgrade-from-v3-to-v4"
   },
   "keywords": [],
   "author": "Toni Ivanisevic <030toni@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tonitone/bootstrap-upgrade-from-v-3-to-v-4/issues"
+    "url": "https://github.com/tonitone/css-class-replacer-for-bootstrap-upgrade-from-v3-to-v4/issues"
   },
-  "dependencies": {
-    "replace-in-file": "^3.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

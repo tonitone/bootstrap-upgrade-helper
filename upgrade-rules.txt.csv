@@ -11,6 +11,11 @@
 .panel-info;.card.text-white.bg-info
 .panel-warning;.card.bg-warning
 .panel-danger;.card.bg-danger.text-white
+
+.progress-bar-danger;.bg-danger
+DIE ANDEREN FARBEN AUCHJ
+
+
 .well;.card.card-body
 .thumbnail;.card.card-body
 #.list-inline > li;.list-inline-item
@@ -22,15 +27,20 @@
 .navbar-fixed-top;.fixed-top
 .nav-stacked;.flex-column
 .btn-default;.btn-secondary
+.btn-xs;.btn-sm
 .img-responsive;.img-fluid
 .img-circle;.rounded-circle
 .img-rounded;.rounded
 .form-horizontal;(removed)
 .radio;.form-check
 .checkbox;.form-check
+.divider;.dropdown-divider
 .input-lg;.form-control-lg
 .input-sm;.form-control-sm
-.control-label;.form-control-label
+.control-label;.col-form-label
+.col-form-legend;.col-form-label
+.form-control-label;.col-form-label
+.form-control-static;.form-control-plaintext
 .table-condensed;.table-sm
 #.pagination > li;.page-item
 #.pagination > li > a;.page-link
@@ -46,5 +56,8 @@
 .visible-sm;.d-block.d-md-none
 .visible-md;.d-block.d-lg-none
 .visible-lg;.d-block.d-xl-none
-.label;.badge
 .badge;.badge.badge-pill
+.badge-default;.badge-secondary
+.label;.badge
+.label-default;.badge-secondary
+.help-block;.form-text

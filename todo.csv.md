@@ -1,0 +1,7 @@
+- Dropped .radio-inline and .checkbox-inline.
+- Consolidated .checkbox and .radio into .form-check and the various .form-check-* classes.
+- dropped .input-group-addon and .input-group-btn for two new classes, .input-group-prepend and .input-group-append
+- Added a new sm grid tier below 768px for more granular control. We now have xs, sm, md, lg, and xl. This also means every tier has been bumped up one level (so .col-md-6 in v3 is now .col-lg-6 in v4).
+- xs grid classes have been modified to not require the infix to more accurately represent that they start applying styles at min-width: 0 and not a set pixel value. Instead of .col-xs-6, it’s now .col-6. All other grid tiers require the infix (e.g., sm).
+- .dl-horizontal has been dropped. Instead, use .row on <dl> and use grid column classes (or mixins) on its <dt> and <dd> children.
+-

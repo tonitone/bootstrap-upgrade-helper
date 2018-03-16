@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"sorry no tests :) \"",
+    "search": "npm run copySmall && node index.js search ./fixture-small.html",
     "replace": "npm run replaceSmall",
-    "replaceSmall": "npm run copySmall && node index.js ./fixture-small.html",
-    "replaceLarge": "npm run copyLarge && node index.js ./fixture-bootstrap-3-theme.html",
+    "replaceSmall": "npm run copySmall && node index.js replace ./fixture-small.html",
+    "replaceLarge": "npm run copyLarge && node index.js replace ./fixture-bootstrap-3-theme.html",
     "copySmall": "cp fixture-small.html.bak fixture-small.html",
     "copyLarge": "cp fixture-bootstrap-3-theme.html.bak fixture-bootstrap-3-theme.html"
   },

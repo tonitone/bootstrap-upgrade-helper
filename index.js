@@ -3,12 +3,13 @@
 const path = require('path');
 const fs = require('fs');
 const args = process.argv.slice(2);
-const filesToReplace = args[0] || './fixture-small.html';
-const fileExtension = args[1] || '.html';
+const runningMode = args[0] || 'search';
+//const fileExtension = args[1] || '.html';
+const filesToReplace = args[1] || './fixture-small.html';
 
 let upgradeRulesAsLines = [], returnTransformedCSSSelectorToHTMLAttribute,
   isACSSClassSelector, returnCleanCsvString,
-regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g;
+  regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g;
 
 returnTransformedCSSSelectorToHTMLAttribute = function (str) {
   return str.replace(".", " ");
@@ -33,7 +34,7 @@ let isLineNotEmptyAndDontStartWithAHash = function (oneLine) {
 fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileContent) {
   upgradeRulesAsLines = upgradeRulesFileContent.split("\n");
 
-  fs.readFile(filesToReplace, 'utf8', function (err,fileToReplaceFileContent) {
+  fs.readFile(filesToReplace, 'utf8', function (err, fileToReplaceFileContent) {
     if (err) {
       return console.log(err);
     }
@@ -56,22 +57,31 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileCont
           replaceString = returnTransformedCSSSelectorToHTMLAttribute(replaceString);
           //if(searchString.indexOf('label') !== -1)
 //console.log(searchString, replaceString)
-          let itemIndexToReplace = htmlClassAttributes.indexOf(searchString);
-          if(itemIndexToReplace !== -1) {
+          itemIndexToReplace = htmlClassAttributes.indexOf(searchString);
+
+          if (itemIndexToReplace !== -1) {
             htmlClassAttributes[itemIndexToReplace] = replaceString;
-          //  console.log(htmlClassAttributes);
+
+            if (runningMode === 'search') {
+              console.log('found in' + filesToReplace + ' selector: ' + csvColumns[0]);
+            }
+            //  console.log(htmlClassAttributes);
           }
         }
       }
 
-      let htmlClassAttributesNew = htmlClassAttributes.join(' ');
-      if (htmlClassAttributesString !== htmlClassAttributesNew) {
-        fileToReplaceFileContent = fileToReplaceFileContent.replace(htmlClassAttributesString, htmlClassAttributesNew);
-        console.log(htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
+      if (runningMode === 'replace') {
+        let htmlClassAttributesNew = htmlClassAttributes.join(' ');
+        if (htmlClassAttributesString !== htmlClassAttributesNew) {
+          fileToReplaceFileContent = fileToReplaceFileContent.replace(htmlClassAttributesString, htmlClassAttributesNew);
+          console.log('replace in ' + filesToReplace + ': ' + htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
+        }
       }
     }
-    fs.writeFile(filesToReplace, htmlContent, 'utf8', function (err) {
-       if (err) return console.log(err);
-    });
+    if (runningMode === 'replace') {
+      fs.writeFile(filesToReplace, fileToReplaceFileContent, 'utf8', function (err) {
+        if (err) return console.log(err);
+      });
+    }
   });
 });

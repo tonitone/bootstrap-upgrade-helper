@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const args = process.argv.slice(2);
-const runningMode = args[0] || 'search';
+const runningMode = args[0] || 'searchHtml';
 //const fileExtension = args[1] || '.html';
 const filesToReplace = args[1] || './fixture-small.html';
 
@@ -49,20 +49,20 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileCont
       for (oneLine of upgradeRulesAsLines) {
         if (isLineNotEmptyAndDontStartWithAHash(oneLine)) {
 
-          let csvColumns = oneLine.split(';'),
+          let csvColumns = oneLine.split(','),
             searchString = returnCleanCsvString(csvColumns[0]),
             replaceString = returnCleanCsvString(csvColumns[1]),
             itemIndexToReplace;
 
           replaceString = returnTransformedCSSSelectorToHTMLAttribute(replaceString);
           //if(searchString.indexOf('label') !== -1)
-//console.log(searchString, replaceString)
+          //console.log(searchString, replaceString)
           itemIndexToReplace = htmlClassAttributes.indexOf(searchString);
 
           if (itemIndexToReplace !== -1) {
             htmlClassAttributes[itemIndexToReplace] = replaceString;
 
-            if (runningMode === 'search') {
+            if (runningMode === 'searchHtml') {
               console.log('found in' + filesToReplace + ' selector: ' + csvColumns[0]);
             }
             //  console.log(htmlClassAttributes);

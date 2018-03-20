@@ -14,6 +14,12 @@ in the *fixture-small.html* is a some small piece of sample html.
 To check the script you can use this command
 
 ~~~
+# HTML 
+
+# find all replaceble bootstrap 3 markup
+npm run searchHtml
+
+#replace replacable bootstrap 3 markup 
 npm run replaceSmall
 ~~~
 

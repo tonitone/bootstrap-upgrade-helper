@@ -9,7 +9,8 @@ const filesToReplace = args[1] || './fixture-small.html';
 
 let upgradeRulesAsLines = [], returnTransformedCSSSelectorToHTMLAttribute,
   isACSSClassSelector, returnCleanCsvString,
-  regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g;
+  regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g,
+  searchMatches;
 
 returnTransformedCSSSelectorToHTMLAttribute = function (str) {
   return str.replace(".", " ");
@@ -32,7 +33,8 @@ let isLineNotEmptyAndDontStartWithAHash = function (oneLine) {
 };
 
 fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileContent) {
-  upgradeRulesAsLines = upgradeRulesFileContent.split("\n");
+  upgradeRulesAsLines = upgradeRulesFileContent.split("\n"),
+  searchMatches = 0;
 
   fs.readFile(filesToReplace, 'utf8', function (err, fileToReplaceFileContent) {
     if (err) {
@@ -63,7 +65,8 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileCont
             htmlClassAttributes[itemIndexToReplace] = replaceString;
 
             if (runningMode === 'searchHtml') {
-              console.log('found in' + filesToReplace + ' selector: ' + csvColumns[0]);
+              searchMatches ++;
+              console.log('found in ' + filesToReplace + ' selector: ' + csvColumns[0]);
             }
             //  console.log(htmlClassAttributes);
           }
@@ -82,6 +85,9 @@ fs.readFile('upgrade-rules.txt.csv', "utf8", function (err, upgradeRulesFileCont
       fs.writeFile(filesToReplace, fileToReplaceFileContent, 'utf8', function (err) {
         if (err) return console.log(err);
       });
+    }
+    if (runningMode === 'searchHtml') {
+      console.log('---\nfound: ' + searchMatches + ' replacable attributes');
     }
   });
 });

@@ -1,0 +1,18 @@
+{
+  "searchHtml": {
+    "files": {
+      "folder": "c:\\path-to-your-template-files\\",
+      "filesMatcher": "*.html",
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  }
+}

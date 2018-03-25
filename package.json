@@ -22,6 +22,9 @@
   "bugs": {
     "url": "https://github.com/tonitone/css-class-replacer-for-bootstrap-upgrade-from-v3-to-v4/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "enfslist": "^1.0.0",
+    "minimatch": "^3.0.4",
+  },
   "devDependencies": {}
 }

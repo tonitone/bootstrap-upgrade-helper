@@ -3,12 +3,10 @@
 const fs = require('fs');
 const enfslist = require("enfslist");
 const path = require('path');
-const minimatch = require('minimatch');
-const recursive = require("recursive-readdir");
+const microMatch = require('micromatch');
 const args = process.argv.slice(2);
 const runningMode = args[0] || 'searchHtml';
-const filesToReplace = args[1] || './fixtures-small.html';
-const config = require(__dirname + '/my-config.json');
+const config = require(__dirname + '/config.json');
 
 /**
  *
@@ -16,8 +14,9 @@ const config = require(__dirname + '/my-config.json');
  * @returns {Array}
  */
 const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent) {
-    let isLineStartWithAHash,
-      upgradeRulesAsLines = upgradeRulesFileContent.split("\n"), oneLine, rulesArray = [];
+    let upgradeRulesAsLines = upgradeRulesFileContent.split("\n"),
+      rulesArray = [],
+      isLineStartWithAHash;
 
     /**
      *
@@ -63,31 +62,34 @@ const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent)
     return str.replace(".", " ");
   };
 
-  /**
-   *
-   * @param {object} files
-   * @param {string} extension
-   * @returns {Array}
-   */
-  var returnFilesBasedOnExtension = function (files, extension) {
+/**
+ *
+ * @param {object} files
+ * @param {string} extension
+ * @param {Array} exclude
+ * @returns {Array}
+ */
+var returnFilesBasedOnExtension = function (files, extension, exclude) {
     let ret = [], i, newElementIndex = 0;
     for (i = 0; i < files.length; i++) {
+      let fileNameWithoutPath = path.basename(files[i].path);
+
+      if (microMatch(fileNameWithoutPath, exclude).length > 0) {
+        continue;
+      }
+
       if (!files[i].stat.isDirectory()) {
-        let fileNameWithoutPath = path.basename(files[i].path);
-        if (minimatch(fileNameWithoutPath, extension)) {
-          //console.log(fileNameWithoutPath)
-          //console.log(files[i], extension, newElementIndex)
+        if (microMatch(fileNameWithoutPath, extension)) {
           ret[newElementIndex++] = files[i].path;
         }
       }
     }
     return ret;
   },
-  regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g,
   Counter = (function () {
     /**
-     *
-     * @type {{aType: number, anotherType: number, :) ... }}
+     * @example {aType: 0, anotherType: 0, :) ... }
+     * @type {object}
      */
     var counter = {};
 
@@ -139,12 +141,13 @@ const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent)
       resetCounter: resetCounter
     };
   })(),
+  regExForHtmlClassAttribute = /(\s+class=['"]?)(.[^'"]*)(['"]?>)/g,
 
   /**
    *
    * @param {string} searchString
-   * @param {bool} hasToRemoveFirstDot true
-   * @returns {string|*}
+   * @param {boolean} hasToRemoveFirstDot true
+   * @returns {string}
    */
   returnCleanCsvString = function (searchString, hasToRemoveFirstDot = true) {
     searchString = searchString.trim();
@@ -187,6 +190,7 @@ const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent)
     return {splittedCssClasses, iSplittedCssClasses, actualSplittedRule, regExpObject};
   },
   runHtmlActions = function () {
+    let result;
     while (result = regExForHtmlClassAttribute.exec(fileToReplaceFileContent)) {
       let htmlClassAttributesString = result[2],
         htmlClassAttributes = htmlClassAttributesString.split(' ');
@@ -197,7 +201,6 @@ const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent)
           itemIndexToReplace;
 
         //if(searchString.indexOf('label') !== -1)
-        //console.log(searchString, replaceString)
         //console.log(actualRule);
         itemIndexToReplace = htmlClassAttributes.indexOf(actualRule.search);
 
@@ -221,13 +224,8 @@ const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent)
 
               replaceString = returnTransformedCSSSelectorToHtmlAttribute(replaceString);
               htmlClassAttributes[itemIndexToReplace] = replaceString;
-              //console.log('replaced in ' + filesToReplace + ' found-selector: ' + actualRule.searchHtml + ' replaced-to: ' + actualRule.replace);
               break;
           }
-
-          if (runningMode === 'searchHtml') {
-          }
-          //  console.log(htmlClassAttributes);
         }
       }
 
@@ -235,16 +233,16 @@ const returnPreparedUpgradeRulesFromCsvFile = function (upgradeRulesFileContent)
         let htmlClassAttributesNew = htmlClassAttributes.join(' ');
         if (htmlClassAttributesString !== htmlClassAttributesNew) {
           fileToReplaceFileContent = fileToReplaceFileContent.replace(htmlClassAttributesString, htmlClassAttributesNew);
-          console.log('replace in ' + filesToReplace + ': ' + htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
+          console.log('replaced ' + htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
         }
       }
 
     }
     return {htmlClassAttributesString, htmlClassAttributes, replaceString, htmlClassAttributesNew};
   },
+  suffixForGlobalCounter = 'All',
   foundFiles = [],
-  isLineNotEmpty,
-  suffixForGlobalCounter = 'All';
+  isLineNotEmpty;
 
 
 Counter.registerCounter(runningMode);
@@ -254,34 +252,46 @@ Counter.registerCounter('files');
 try {
   config[runningMode].files.filteredFiles = fs.readFileSync(config[runningMode].searchReplaceRules.file, "utf8");
 } catch (err) {
-  console.log('error in upgradeRulesFileContent :', err);
+  console.log('error in config[runningMode].files.filteredFiles :', err);
   process.exit(1);
 }
 config[runningMode].searchReplaceRules.rules = returnPreparedUpgradeRulesFromCsvFile(config[runningMode].files.filteredFiles);
 //console.log(config[runningMode].searchReplaceRules.rules);
 config[runningMode].files.filteredFiles = returnFilesBasedOnExtension(
   enfslist.listSync(config[runningMode].files.folder),
-  config[runningMode].files.filesMatcher
+  config[runningMode].files.filesMatcher,
+  config[runningMode].files.exclude
 );
 
 
 for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
   var actualFile = config[runningMode].files.filteredFiles[i],
-    fileToReplaceFileContent = fs.readFileSync(actualFile, 'utf8'),
-    result;
+    fileToReplaceFileContent, result;
+
+  try {
+    fileToReplaceFileContent = fs.readFileSync(actualFile, 'utf8');
+  } catch (err) {
+    console.log('error in config[runningMode].files.filteredFiles = ' +
+      'fs.readFileSync(config[runningMode].searchReplaceRules.file ... ) ', err);
+    process.exit(1);
+  }
 
   Counter.resetCounter(runningMode);
 
-  //console.log(fileToReplaceFileContent);
   if (runningMode === 'searchJs' || runningMode === 'searchCss' || runningMode === 'replaceJs') {
     var {splittedCssClasses, iSplittedCssClasses, actualSplittedRule, regExpObject} = runJsAndCssActions();
   }
 
   if (runningMode === 'searchHtml' || runningMode === 'replaceHtml') {
     var {htmlClassAttributesString, htmlClassAttributes, replaceString, htmlClassAttributesNew} = runHtmlActions();
-  }
-  if (runningMode === 'replaceHtml') {
-    fs.writeFileSync(actualFile, fileToReplaceFileContent);
+    if (runningMode === 'replaceHtml') {
+      try {
+        fs.writeFileSync(actualFile, fileToReplaceFileContent);
+      } catch (err) {
+        console.log('error in fs.writeFileSync(actualFile, fileToReplaceFileContent); :', err);
+        process.exit(1);
+      }
+    }
   }
   if (Counter.returnCounter(runningMode) > 0) {
     console.log('---\nfound: ' + Counter.returnCounter(runningMode) + ' replaceable attributes!\n\n');

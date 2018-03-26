@@ -34,7 +34,11 @@
   "searchCss": {
     "files": {
       "folder": ".",
-      "filesMatcher": "*.css",
+      "filesMatcher": [
+        "*.css",
+        "*.scss",
+        "*.less"
+      ],
       "filteredFiles": [],
       "exclude": [
         ".git*",

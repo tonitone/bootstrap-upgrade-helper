@@ -139,7 +139,7 @@
 .visible-sm,.d-block.d-md-none
 .visible-md,.d-block.d-lg-none
 .visible-lg,.d-block.d-xl-none
-.badge,.badge.badge-pill
+#.badge,.badge.badge-pill
 .label-primary,.badge-primary
 .label-default,.badge-secondary
 .label-success,.badge-success

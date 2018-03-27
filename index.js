@@ -297,8 +297,8 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
     console.log('---\nfound: ' + Counter.returnCounter(runningMode) + ' replaceable attributes!\n\n');
   }
 }
-console.log('---------------------\nfound: ' + Counter.returnCounter(runningMode + suffixForGlobalCounter) + ' replaceable attributes! ' +
-  'in ' + foundFiles.length + ' files ');
+console.log('---------------------\nfound: ' + Counter.returnCounter(runningMode + suffixForGlobalCounter) + ' ' +
+  'replaceable attributes in ' + foundFiles.length + ' files ');
 
 
 //console.log(config.searchHtml.files.filteredFiles);

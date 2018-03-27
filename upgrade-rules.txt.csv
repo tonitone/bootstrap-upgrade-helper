@@ -114,7 +114,6 @@
 .img-responsive,.img-fluid
 .img-circle,.rounded-circle
 .img-rounded,.rounded
-#.form-horizontal,
 .radio,.form-check
 .checkbox,.form-check
 .divider,.dropdown-divider
@@ -148,3 +147,9 @@
 .label-danger,.badge-danger
 .label,.badge
 .help-block,.form-text
+#.form-horizontal,
+#.radio-inline,
+#.checkbox-inline,
+#input-group-addon,
+#input-group-btn,
+

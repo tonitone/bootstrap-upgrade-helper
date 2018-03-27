@@ -147,6 +147,7 @@
 .label-danger,.badge-danger
 .label,.badge
 .help-block,.form-text
+#the following selectores were removed
 #.form-horizontal,
 #.radio-inline,
 #.checkbox-inline,

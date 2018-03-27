@@ -76,8 +76,8 @@ found: 2 replaceable attributes!
 
 
 ---------------------
-found: 10 replaceable attributes! in 3 files 
+found: 10 replaceable attributes in 3 files 
 
 ~~~
 
-have fun && feel free to extend
+have fun && feel free to **extend and optimize**

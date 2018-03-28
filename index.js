@@ -94,7 +94,7 @@ let runJsAndCssActions = function () {
     }
     return {htmlClassAttributesString, htmlClassAttributes, replaceString, htmlClassAttributesNew};
   },
-  regExForHtmlClassAttribute = /(\s+class=['"]?)(.[^'"]*)(['"]?>)/g,
+  regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g,
   suffixForGlobalCounter = 'All',
   foundFiles = [];
 

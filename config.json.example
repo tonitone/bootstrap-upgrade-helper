@@ -1,0 +1,70 @@
+{
+  "searchHtml": {
+    "files": {
+      "folder": ".",
+      "filesMatcher": "*.html",
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  },
+  "searchJs": {
+    "files": {
+      "folder": ".",
+      "filesMatcher": "*.js",
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  },
+  "searchCss": {
+    "files": {
+      "folder": ".",
+      "filesMatcher": [
+        "*.css",
+        "*.scss",
+        "*.less"
+      ],
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  },
+  "replaceHtml": {
+    "files": {
+      "folder": ".",
+      "filesMatcher": "*.html",
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  }
+}

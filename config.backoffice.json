@@ -1,0 +1,74 @@
+{
+  "searchHtml": {
+    "files": {
+      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\merchant - Copy\\",
+      "filesMatcher": [
+        "*.html",
+        "*.php",
+        "*.twig"
+      ],
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  },
+  "searchJs": {
+    "files": {
+      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\web - Copy\\js\\",
+      "filesMatcher": "*.js",
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  },
+  "searchCss": {
+    "files": {
+      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\web - Copy\\less\\",
+      "filesMatcher": [
+        "*.css",
+        "*.scss",
+        "*.less"
+      ],
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  },
+  "replaceHtml": {
+    "files": {
+      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\merchant - Copy\\",
+      "filesMatcher": "*.html",
+      "filteredFiles": [],
+      "exclude": [
+        ".git*",
+        "node_modules",
+        ".idea"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "upgrade-rules.txt.csv",
+      "rules": []
+    }
+  }
+}

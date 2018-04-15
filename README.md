@@ -1,6 +1,6 @@
-# css class replacer for bootstrap upgrade from v3 to v4
+# Bootstrap upgrade helper for upgrade from V3 to V4
 
-Small CSS-class-replacer to change bootstrap v3 markup to v4
+Small CSS-class-replacer to change Bootstrap's V3 markup to V4.
 
 This project is created to help me convert the CSS-class-attributes for a project. 
 I can not parse the DOM with a XML-parser, because the templates are not valid.
@@ -17,13 +17,15 @@ and will be replaced by hand :)
 For `searchXYZ`-actions the lines that start with a hash `#` will be used.
 
 ## How to use it
-1. git clone https://github.com/tonitone/css-class-replacer-for-bootstrap-upgrade-from-v3-to-v4.git
-2. cd css-class-replacer-for-bootstrap-upgrade-from-v3-to-v4/
-3. npm i
-4. Edit the config.json
-5. Do a search (FYI): `npm run searchHtml`
-6. Do a replacement-action: npm run replaceHtml
-7. Do a search-action (to see what you have to replace by hand): `npm run searchHtml`
+1. `git clone https://github.com/tonitone/bootstrap-upgrade-helper.git`
+2. `cd bootstrap-upgrade-helper/`
+3. `npm i`
+4. `cp config.json.example config.json`
+5. Edit the config.json
+5. My actual replacement-workflow looks like this: (maybe you find another one better)
+    1. Do a search: `npm run searchHtml`
+    2. Do a replacement-action: `npm run replaceHtml`
+    3. Do a search-action (to see what you have to replace by hand): `npm run searchHtml`
 
 
 ### Possible actions
@@ -45,7 +47,7 @@ replaceHtml
 
 ~~~
 
-> node index.js searchCss
+> npm run searchCss
 
 ---
 file: c:\my-path\xy.custom-theme.css

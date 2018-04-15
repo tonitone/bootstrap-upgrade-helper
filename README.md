@@ -16,6 +16,8 @@ and will be replaced by hand :)
 
 For `searchXYZ`-actions the lines that start with a hash `#` will be used.
 
+## DON'T USE THE REPLACE-MODE TWICE ON THE SAME FILE ;)
+
 ## How to use it
 1. `git clone https://github.com/tonitone/bootstrap-upgrade-helper.git`
 2. `cd bootstrap-upgrade-helper/`
@@ -25,8 +27,8 @@ For `searchXYZ`-actions the lines that start with a hash `#` will be used.
 5. My actual replacement-workflow looks like this: (maybe you find another one better)
     1. Do a search: `npm run searchHtml`
     2. Do a replacement-action: `npm run replaceHtml`
-    3. Do a search-action (to see what you have to replace by hand): `npm run searchHtml`
-
+    3. I remove all entries in the upgrade-rules.txt.csv, that got no hash!
+    4. Do a search-action (to see what you have to replace by hand): `npm run searchHtml`
 
 ### Possible actions
 ~~~

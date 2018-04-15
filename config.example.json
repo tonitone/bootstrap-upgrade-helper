@@ -1,11 +1,10 @@
 {
   "searchHtml": {
     "files": {
-      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\merchant - Copy\\",
+      "folder": ".",
       "filesMatcher": [
         "*.html",
-        "*.php",
-        "*.twig"
+        "*.php"
       ],
       "filteredFiles": [],
       "exclude": [
@@ -21,7 +20,7 @@
   },
   "searchJs": {
     "files": {
-      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\web - Copy\\js\\",
+      "folder": ".",
       "filesMatcher": "*.js",
       "filteredFiles": [],
       "exclude": [
@@ -37,7 +36,7 @@
   },
   "searchCss": {
     "files": {
-      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\web - Copy\\less\\",
+      "folder": ".",
       "filesMatcher": [
         "*.css",
         "*.scss",
@@ -57,8 +56,11 @@
   },
   "replaceHtml": {
     "files": {
-      "folder": "c:\\vboxshare\\app-1807\\event-ticketing-php\\merchant - Copy\\",
-      "filesMatcher": "*.html",
+      "folder": ".",
+      "filesMatcher": [
+        "*.html",
+        "*.php"
+      ],,
       "filteredFiles": [],
       "exclude": [
         ".git*",

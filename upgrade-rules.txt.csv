@@ -1,4 +1,3 @@
-#_DONT_RUN_THE_REPLACE-MODE_TWICE_;),
 .col-lg-1,.col-xl-1
 .col-lg-2,.col-xl-2
 .col-lg-3,.col-xl-3
@@ -141,7 +140,7 @@
 .label-danger,.badge-danger
 .label,.badge
 .help-block,.form-text
-#the_following_selectors_will_not_be_replaced_to_save_time_:),
+#the_following_selectors_will_not_be_replaced_to_save_time_,
 #.list-inline > li,.list-inline-item
 #.dropdown-menu > li,.dropdown-item
 #.nav navbar > li,.nav-item

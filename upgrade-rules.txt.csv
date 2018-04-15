@@ -1,3 +1,4 @@
+#_DONT_RUN_THE_REPLACE-MODE_TWICE_;),
 .col-lg-1,.col-xl-1
 .col-lg-2,.col-xl-2
 .col-lg-3,.col-xl-3
@@ -101,10 +102,6 @@
 .progress-bar-danger,.bg-danger
 .well,.card.card-body
 .thumbnail,.card.card-body
-#.list-inline > li,.list-inline-item
-#.dropdown-menu > li,.dropdown-item
-#.nav navbar > li,.nav-item
-#.nav navbar > li > a,.nav-link
 .navbar-right,.ml-auto
 .navbar-btn,.nav-item
 .navbar-fixed-top,.fixed-top
@@ -124,8 +121,6 @@
 .form-control-label,.col-form-label
 .form-control-static,.form-control-plaintext
 .table-condensed,.table-sm
-#.pagination > li,.page-item
-#.pagination > li > a,.page-link
 .item,.carousel-item
 .text-help,.form-control-feedback
 .pull-right,.float-right
@@ -138,7 +133,6 @@
 .visible-sm,.d-block.d-md-none
 .visible-md,.d-block.d-lg-none
 .visible-lg,.d-block.d-xl-none
-#.badge,.badge.badge-pill
 .label-primary,.badge-primary
 .label-default,.badge-secondary
 .label-success,.badge-success
@@ -147,7 +141,15 @@
 .label-danger,.badge-danger
 .label,.badge
 .help-block,.form-text
-#the_following_selectores_were_removed______________________,
+#the_following_selectors_will_not_be_replaced_to_save_time_:),
+#.list-inline > li,.list-inline-item
+#.dropdown-menu > li,.dropdown-item
+#.nav navbar > li,.nav-item
+#.nav navbar > li > a,.nav-link
+#.pagination > li,.page-item
+#.pagination > li > a,.page-link
+#.badge,.badge.badge-pill
+#the_following_selectores_where_removed______________________,
 #.form-horizontal,
 #.radio-inline,
 #.checkbox-inline,

@@ -12,6 +12,7 @@ const returnTransformedCSSSelectorToHtmlAttribute = require(__dirname + '/lib/re
 const returnFilesBasedOnExtension = require(__dirname + '/lib/returnFilesBasedOnExtension');
 const Counter = require(__dirname + '/lib/Counter');
 const returnCleanCsvString = require(__dirname + '/lib/returnCleanCsvString');
+const logMessage = require(__dirname + '/lib/logMessage');
 
 let runJsAndCssActions = function () {
     for (let actualRule of config[runningMode].searchReplaceRules.rules) {
@@ -31,13 +32,13 @@ let runJsAndCssActions = function () {
 
           if (foundFiles.indexOf(actualFile) === -1) {
             foundFiles.push(actualFile);
-            console.log('---\nfile: ' + actualFile + '\n');
+            logMessage.displayActualFile(actualFile);
           }
 
           Counter.count(runningMode);
           Counter.count(runningMode + suffixForGlobalCounter);
 
-          console.log('found selector', actualSplittedRule.substr(1));
+          logMessage.displayRunningMessage(actualSplittedRule.substr(1), runningMode);
         }
       }
     }
@@ -61,7 +62,7 @@ let runJsAndCssActions = function () {
         if (itemIndexToReplace !== -1) {
           if (foundFiles.indexOf(actualFile) === -1) {
             foundFiles.push(actualFile);
-            console.log('---\nfile: ' + actualFile + '\n');
+            logMessage.displayActualFile(actualFile);
           }
           switch (runningMode) {
             case 'searchHtml':
@@ -69,7 +70,8 @@ let runJsAndCssActions = function () {
               Counter.count(runningMode);
               Counter.count(runningMode + suffixForGlobalCounter);
 
-              console.log('found selector: ' + actualRule.search);
+              logMessage.displayRunningMessage(actualRule.search, runningMode);
+
               break;
             case 'replaceHtml':
 
@@ -87,7 +89,7 @@ let runJsAndCssActions = function () {
         let htmlClassAttributesNew = htmlClassAttributes.join(' ');
         if (htmlClassAttributesString !== htmlClassAttributesNew) {
           fileToReplaceFileContent = fileToReplaceFileContent.replace(htmlClassAttributesString, htmlClassAttributesNew);
-          console.log('replaced ' + htmlClassAttributesString + ' > ' + htmlClassAttributesNew);
+          logMessage.displayRunningMessage(htmlClassAttributesString + ' > ' + htmlClassAttributesNew, runningMode);
         }
       }
 
@@ -97,7 +99,6 @@ let runJsAndCssActions = function () {
   regExForHtmlClassAttribute = /(\s+class=['"]{1})(.[^'"]*)(['"]{1}>)/g,
   suffixForGlobalCounter = 'All',
   foundFiles = [];
-
 
 Counter.registerCounter(runningMode);
 Counter.registerCounter(runningMode + suffixForGlobalCounter);
@@ -149,11 +150,10 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
     }
   }
   if (Counter.returnCounter(runningMode) > 0) {
-    console.log('---\nfound: ' + Counter.returnCounter(runningMode) + ' replaceable attributes!\n\n');
+    logMessage.displayRunningCountSelectorMessage(Counter.returnCounter(runningMode), runningMode);
   }
 }
-console.log('---------------------\nfound: ' + Counter.returnCounter(runningMode + suffixForGlobalCounter) + ' ' +
-  'replaceable attributes in ' + foundFiles.length + ' files.');
 
-console.log('\nsuccessful finished!');
+logMessage.displayCompleteMessage(Counter.returnCounter(runningMode + suffixForGlobalCounter), foundFiles.length, runningMode);
+
 process.exit(0);

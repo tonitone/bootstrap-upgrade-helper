@@ -9,7 +9,7 @@
     "searchJs": "node index.js searchJs",
     "searchCss": "node index.js searchCss",
     "replaceHtml": "node index.js replaceHtml",
-    "searchHtmlTest": "npm run copySmall && node index.js searchHtml ./test/fixtures/fixture-small.html",
+    "searchHtmlAfterReplace": "node index.js searchCssAfterReplace",
     "copySmall": "cp test/fixtures/fixture-small.html.bak test/fixtures/fixture-small.html"
   },
   "repository": {

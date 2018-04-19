@@ -149,8 +149,8 @@
 .pagination > li > a,.page-link
 .badge,.badge.badge-pill
 # removed in Bootstrap 4,.
-.form-horizontal
-.radio-inline
-.checkbox-inline
-.input-group-addon
-.input-group-btn
+.form-horizontal,
+.radio-inline,
+.checkbox-inline,
+.input-group-addon,
+.input-group-btn,

@@ -1,5 +1,5 @@
 #Bootstrap 3 markup,Bootstrap 4 markup
-#, won't replace to save time
+#won't replace to save time,
 .list-inline > li,.list-inline-item
 .dropdown-menu > li,.dropdown-item
 .nav navbar > li,.nav-item
@@ -7,7 +7,7 @@
 .pagination > li,.page-item
 .pagination > li > a,.page-link
 .badge,.badge.badge-pill
-#, the following selectores where removed in Bootstrap 4
+#the following selectores where removed in Bootstrap 4,
 .form-horizontal,
 .radio-inline,
 .checkbox-inline,

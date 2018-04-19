@@ -35,7 +35,7 @@ In the `/search-rules/`-folder you can find the csv-files for search and replace
 available via `npm run-script`:
   searchHtml
     node index.js searchHtml
-  
+searchHtmlNotReplaced
     node index.js searchHtml notReplaced
   searchJs
     node index.js searchJs
@@ -47,8 +47,6 @@ available via `npm run-script`:
     node index.js searchCss notReplaced
   replaceHtml
     node index.js replaceHtml
-  searchHtmlAfterReplace
-    node index.js searchCssAfterReplace
   copyFixture
     cp test/files/fixture-bootstrap-3.html.bak test/fixtures/fixture-bootstrap-3.html
 ~~~

@@ -7,14 +7,13 @@ I can not parse the DOM with a XML-parser, because the templates are not valid.
 
 ## upgrade-rules
 
-_The upgrade-rules have been originally taken from http://upgrade-bootstrap.bootply.com/ (thank you) and extended by my self._
+_The upgrade-rules have been originally taken from http://upgrade-bootstrap.bootply.com/ (thank you) and extended by 
+my self. Feel free to fix them or add more_
 
-In the `upgrade-rules.csv.txt` you can see what kind of markup will be replaced. 
-
-Lines that starts with an `#` will be ignored for replacements, to reduce time consuming complexity - 
-and will be replaced by hand :) 
-
-For `searchXYZ`-actions the lines that start with a hash `#` will be used.
+In the `/search-rules/`-folder you can find the csv-files for search and replace:
+ - search-all.csv
+ - will-replace.csv
+ - wont-replace.csv 
 
 ## DON'T USE THE REPLACE-MODE TWICE ON THE SAME FILE ;)
 
@@ -27,64 +26,31 @@ For `searchXYZ`-actions the lines that start with a hash `#` will be used.
 5. My actual replacement-workflow looks like this: (maybe you find another one better)
     1. Do a search: `npm run searchHtml`
     2. Do a replacement-action: `npm run replaceHtml`
-    3. I remove all entries in the upgrade-rules.txt.csv, that got no hash!
-    4. Do a search-action (to see what you have to replace by hand): `npm run searchHtml`
+    3. Do a search for elements, that will not be handled in replace-mode: `npm run searchHtml notReplaced`
 
 ### Possible actions
 ~~~
 > npm run
 
-searchHtml
-  node index.js searchHtml
-searchJs
-  node index.js searchJs
-searchCss
-  node index.js searchCss
-replaceHtml
-  node index.js replaceHtml
-
-~~~
-
-### Example: npm run searchCss
-
-~~~
-
-> npm run searchCss
-
----
-file: c:\my-path\xy.custom-theme.css
-
-found selector .item 
-found selector .item 
-found selector .item 
-found selector .item 
-found selector .item 
----
-found: 5 replaceable attributes!
-
-
----
-file: c:\my-path\css\some.css
-
-found selector .well 
-found selector .well 
-found selector .btn-default 
----
-found: 3 replaceable attributes!
-
-
----
-file: c:\my-path\less\flexer.less
-
-found selector .panel-heading 
-found selector .panel-default 
----
-found: 2 replaceable attributes!
-
-
----------------------
-found: 10 replaceable attributes in 3 files 
-
+available via `npm run-script`:
+  searchHtml
+    node index.js searchHtml
+  
+    node index.js searchHtml notReplaced
+  searchJs
+    node index.js searchJs
+  searchJsNotReplaced
+    node index.js searchJs notReplaced
+  searchCss
+    node index.js searchCss
+  searchCssNotReplaced
+    node index.js searchCss notReplaced
+  replaceHtml
+    node index.js replaceHtml
+  searchHtmlAfterReplace
+    node index.js searchCssAfterReplace
+  copyFixture
+    cp test/files/fixture-bootstrap-3.html.bak test/fixtures/fixture-bootstrap-3.html
 ~~~
 
 have fun && feel free to **extend and optimize**

@@ -1,16 +1,18 @@
 {
   "name": "bootstrap-upgrade-from-v-3-to-v-4",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"sorry no tests :) \"",
     "searchHtml": "node index.js searchHtml",
+    "searchHtmlNotReplaced": "node index.js searchHtml notReplaced",
     "searchJs": "node index.js searchJs",
+    "searchJsNotReplaced": "node index.js searchJs notReplaced",
     "searchCss": "node index.js searchCss",
+    "searchCssNotReplaced": "node index.js searchCss notReplaced",
     "replaceHtml": "node index.js replaceHtml",
-    "searchHtmlAfterReplace": "node index.js searchCssAfterReplace",
-    "copySmall": "cp test/fixtures/fixture-small.html.bak test/fixtures/fixture-small.html"
+    "copyFixture": "cp test/files/fixture-bootstrap-3.html.bak test/fixtures/fixture-bootstrap-3.html"
   },
   "repository": {
     "type": "git",

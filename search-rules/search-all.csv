@@ -10,7 +10,6 @@
 .col-lg-10,.col-xl-10
 .col-lg-11,.col-xl-11
 .col-lg-12,.col-xl-12
-#,
 .col-md-1,.col-lg-1
 .col-md-2,.col-lg-2
 .col-md-3,.col-lg-3
@@ -23,7 +22,6 @@
 .col-md-10,.col-lg-10
 .col-md-11,.col-lg-11
 .col-md-12,.col-lg-12
-#,
 .col-sm-1,.col-md-1
 .col-sm-2,.col-md-2
 .col-sm-3,.col-md-3
@@ -36,7 +34,6 @@
 .col-sm-10,.col-md-10
 .col-sm-11,.col-md-11
 .col-sm-12,.col-md-12
-#,
 .col-xs-1,.col-1
 .col-xs-2,.col-2
 .col-xs-3,.col-3
@@ -49,7 +46,6 @@
 .col-xs-10,.col-10
 .col-xs-11,.col-11
 .col-xs-12,.col-12
-#,
 .col-lg-offset-1,.offset-xl-1
 .col-lg-offset-2,.offset-xl-2
 .col-lg-offset-3,.offset-xl-3
@@ -62,7 +58,6 @@
 .col-lg-offset-10,.offset-xl-10
 .col-lg-offset-11,.offset-xl-11
 .col-lg-offset-12,.offset-xl-12
-#,
 .col-md-offset-1,.offset-lg-1
 .col-md-offset-2,.offset-lg-2
 .col-md-offset-3,.offset-lg-3
@@ -75,7 +70,6 @@
 .col-md-offset-10,.offset-lg-10
 .col-md-offset-11,.offset-lg-11
 .col-md-offset-12,.offset-lg-12
-#,
 .col-sm-offset-1,.offset-md-1
 .col-sm-offset-2,.offset-md-2
 .col-sm-offset-3,.offset-md-3
@@ -88,7 +82,6 @@
 .col-sm-offset-10,.offset-md-10
 .col-sm-offset-11,.offset-md-11
 .col-sm-offset-12,.offset-md-12
-#,
 .panel,.card
 .panel-heading,.card-header
 .panel-title,.card-title

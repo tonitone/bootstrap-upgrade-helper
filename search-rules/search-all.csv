@@ -148,7 +148,7 @@
 .pagination > li,.page-item
 .pagination > li > a,.page-link
 .badge,.badge.badge-pill
-#, the following selectores where removed in Bootstrap 4
+# removed in Bootstrap 4,.
 .form-horizontal
 .radio-inline
 .checkbox-inline

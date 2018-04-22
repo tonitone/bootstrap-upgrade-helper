@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <!-- Required meta tags -->
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
@@ -15,14 +14,7 @@
   .row > * { box-shadow: inset 2px 2px #f00;}
 
   </style>
-  <title>Hello, world!</title>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>bootstrap-upgrade-helper test</title>
+  <title>üöäßÜÖÄ - bootstrap-upgrade-helper test</title>
 </head>
 <body>
 <div class="container">
@@ -120,8 +112,5 @@
     </div>
   </div>
 </div>
-</body>
-</html>
-
 </body>
 </html>

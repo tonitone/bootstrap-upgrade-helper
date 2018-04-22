@@ -14,6 +14,12 @@ In the `/search-rules/`-folder you can find the csv-files for search and replace
  - search-all.csv
  - will-replace.csv
  - wont-replace.csv 
+ 
+## log-files
+The log-files after each action will be saved in the output-folder.
+
+### file-list
+The files, that have been found during a searchHtml-requests, will be also stored in the output-folder. 
 
 ## DON'T USE THE REPLACE-MODE TWICE ON THE SAME FILE ;)
 
@@ -34,21 +40,22 @@ In the `/search-rules/`-folder you can find the csv-files for search and replace
 
 available via `npm run-script`:
   searchHtml
-    node index.js searchHtml
-searchHtmlNotReplaced
-    node index.js searchHtml notReplaced
+    node index.js searchHtml > output/search-html.log.txt
+  searchHtmlWontReplace
+    node index.js searchHtml wontReplace > output/search-html-wont-replace.log.txt
   searchJs
-    node index.js searchJs
-  searchJsNotReplaced
-    node index.js searchJs notReplaced
+    node index.js searchJs > output/search-js.log.txt
+  searchJsWontReplace
+    node index.js searchJs wontReplace > output/search-js-wont-replace.log.txt
   searchCss
-    node index.js searchCss
-  searchCssNotReplaced
-    node index.js searchCss notReplaced
+    node index.js searchCss > output/search-css.log.txt
+  searchCssWontReplace
+    node index.js searchCss wontReplace > output/search-css-wont-replace.log.txt
   replaceHtml
-    node index.js replaceHtml
+    node index.js replaceHtml > output/replace-html.log.txt
   copyFixture
     cp test/files/fixture-bootstrap-3.html.bak test/fixtures/fixture-bootstrap-3.html
+
 ~~~
 
 have fun && feel free to **extend and optimize**

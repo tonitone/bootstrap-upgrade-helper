@@ -9,9 +9,9 @@
       ],
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {
@@ -28,15 +28,16 @@
       ],
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {
       "file": "./search-rules/will-replace.csv",
       "rules": []
-    }
+    },
+    "encoding": "utf8"
   },
   "searchJs": {
     "files": {
@@ -44,9 +45,9 @@
       "filesMatcher": "*.js",
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {
@@ -64,9 +65,9 @@
       ],
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {

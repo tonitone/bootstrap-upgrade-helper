@@ -3,25 +3,23 @@
 const fs = require('fs');
 const enfslist = require("enfslist");
 const path = require('path');
-
-const args = process.argv.slice(2);
-const runningMode = args[0] || 'searchHtml';
-const searchMode = args[1] || 'all';
-let config = require(__dirname + '/config.json');
-
-if (runningMode === 'searchHtml' && searchMode === 'notReplaced') {
-  config[runningMode].searchReplaceRules.file = __dirname + '/search-rules/wont-replace.csv';
-}
-
-console.log('runningMode:' + runningMode);
-console.log('searchMode:' + searchMode);
-
 const returnCleanCsvString = require(__dirname + '/lib/returnCleanCsvString');
 const returnFilesBasedOnExtension = require(__dirname + '/lib/returnFilesBasedOnExtension');
 const returnCssSelectorToHtmlAttribute = require(__dirname + '/lib/returnCssSelectorToHtmlAttribute');
 const returnPreparedUpgradeRulesFromCsvFile = require(__dirname + '/lib/returnPreparedUpgradeRulesFromCsvFile');
 const Counter = require(__dirname + '/lib/Counter');
 const logMessage = require(__dirname + '/lib/logMessage');
+
+const args = process.argv.slice(2);
+const runningMode = args[0] || 'searchHtml';
+const searchMode = args[1] || 'all';
+
+let config = require(__dirname + '/config.shop.json'),
+  encoding = config[runningMode].encoding || 'utf-8';
+
+if (runningMode !== 'replaceHtml' && searchMode === 'wontReplace') {
+  config[runningMode].searchReplaceRules.file = __dirname + '/search-rules/wont-replace.csv';
+}
 
 let runJsAndCssActions = function () {
     for (let actualRule of config[runningMode].searchReplaceRules.rules) {
@@ -30,13 +28,13 @@ let runJsAndCssActions = function () {
         let actualSplittedRule, regExpObject;
         if (runningMode === 'searchJs') {
           actualSplittedRule = '\\.' + splittedCssClasses[iSplittedCssClasses];
-          regExpObject = new RegExp('([\'"]{1})' + actualSplittedRule + '([\'"]{1})', 'g');
+          regExpObject = new RegExp('([\'"]{1})' + actualSplittedRule.replace('-', '\\-') + '([\'"]{1})', 'g');
         }
         if (runningMode === 'searchCss') {
-          actualSplittedRule = '\\.' + splittedCssClasses[iSplittedCssClasses] + ' ';
-          regExpObject = new RegExp(actualSplittedRule, 'g');
+          actualSplittedRule = '\\.' + splittedCssClasses[iSplittedCssClasses];
+          regExpObject = new RegExp(actualSplittedRule.replace('-', '\\-'), 'g');
         }
-        //console.log(regExpObject, 'regExpObject');
+        //console.log(actualSplittedRule, 'regExpObject');
         while (result = regExpObject.exec(fileToReplaceFileContent)) {
 
           if (foundFiles.indexOf(actualFile) === -1) {
@@ -108,6 +106,16 @@ let runJsAndCssActions = function () {
   suffixForGlobalCounter = 'All',
   foundFiles = [];
 
+
+console.log('ok, let\'s start...');
+console.log('runningMode:' + runningMode);
+console.log('searchMode:' + searchMode);
+console.log('fileMatcher:' + config[runningMode].files.filesMatcher);
+console.log('exclude:' + config[runningMode].files.exclude);
+if (runningMode === 'replaceHtml') {
+  console.log('encoding: ' + config[runningMode].encoding);
+}
+
 Counter.registerCounter(runningMode);
 Counter.registerCounter(runningMode + suffixForGlobalCounter);
 Counter.registerCounter('files');
@@ -133,7 +141,7 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
   var actualFile = config[runningMode].files.filteredFiles[i],
     fileToReplaceFileContent, result;
   try {
-    fileToReplaceFileContent = fs.readFileSync(actualFile, 'utf8');
+    fileToReplaceFileContent = fs.readFileSync(actualFile, encoding);
   } catch (err) {
     console.log('error in fs.readFileSync(actualFile, :', err);
     process.exit(1);
@@ -162,5 +170,18 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
 }
 
 logMessage.displayCompleteMessage(Counter.returnCounter(runningMode + suffixForGlobalCounter), foundFiles.length, runningMode);
+
+// save file-list
+//console.log(foundFiles);
+
+if (runningMode === 'searchHtml' && searchMode === 'all') {
+  try {
+    fs.writeFileSync('output/search-html-found-files.txt', foundFiles.join("\n"));
+  } catch (err) {
+    console.log('error in fs.writeFileSync(\'output\' + Date.now() + \'.txt\', config[runningMode].files.filteredFiles); :', err);
+    process.exit(1);
+  }
+}
+
 
 process.exit(0);

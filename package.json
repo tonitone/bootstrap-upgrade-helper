@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"sorry no tests :) \"",
-    "searchHtml": "node index.js searchHtml",
-    "searchHtmlNotReplaced": "node index.js searchHtml notReplaced",
-    "searchJs": "node index.js searchJs",
-    "searchJsNotReplaced": "node index.js searchJs notReplaced",
-    "searchCss": "node index.js searchCss",
-    "searchCssNotReplaced": "node index.js searchCss notReplaced",
-    "replaceHtml": "node index.js replaceHtml",
+    "searchHtml": "node index.js searchHtml > output/search-html.log.txt",
+    "searchHtmlWontReplace": "node index.js searchHtml wontReplace > output/search-html-wont-replace.log.txt",
+    "searchJs": "node index.js searchJs > output/search-js.log.txt",
+    "searchJsWontReplace": "node index.js searchJs wontReplace > output/search-js-wont-replace.log.txt",
+    "searchCss": "node index.js searchCss > output/search-css.log.txt",
+    "searchCssWontReplace": "node index.js searchCss wontReplace > output/search-css-wont-replace.log.txt",
+    "replaceHtml": "node index.js replaceHtml > output/replace-html.log.txt",
     "copyFixture": "cp test/files/fixture-bootstrap-3.html.bak test/fixtures/fixture-bootstrap-3.html"
   },
   "repository": {

@@ -4,39 +4,60 @@
       "folder": ".",
       "filesMatcher": [
         "*.html",
+        "*.php",
+        "*.twig"
+      ],
+      "filteredFiles": [],
+      "exclude": [
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
+      ]
+    },
+    "searchReplaceRules": {
+      "file": "./search-rules/search-all.csv",
+      "rules": []
+    }
+  },
+  "replaceHtml": {
+    "files": {
+      "folder": "./test/fixtures/",
+      "filesMatcher": [
+        "*.html",
         "*.php"
       ],
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {
-      "file": "upgrade-rules.txt.csv",
+      "file": "./search-rules/will-replace.csv",
       "rules": []
-    }
+    },
+    "encoding": "utf8"
   },
   "searchJs": {
     "files": {
-      "folder": ".",
+      "folder": "./test/fixtures/",
       "filesMatcher": "*.js",
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {
-      "file": "upgrade-rules.txt.csv",
+      "file": "./search-rules/search-all.csv",
       "rules": []
     }
   },
   "searchCss": {
     "files": {
-      "folder": ".",
+      "folder": "./test/fixtures/",
       "filesMatcher": [
         "*.css",
         "*.scss",
@@ -44,32 +65,13 @@
       ],
       "filteredFiles": [],
       "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
+        "**/.git*/**",
+        "**/node_modules/**",
+        "**/.idea/**"
       ]
     },
     "searchReplaceRules": {
-      "file": "upgrade-rules.txt.csv",
-      "rules": []
-    }
-  },
-  "replaceHtml": {
-    "files": {
-      "folder": ".",
-      "filesMatcher": [
-        "*.html",
-        "*.php"
-      ],,
-      "filteredFiles": [],
-      "exclude": [
-        ".git*",
-        "node_modules",
-        ".idea"
-      ]
-    },
-    "searchReplaceRules": {
-      "file": "upgrade-rules.txt.csv",
+      "file": "./search-rules/search-all.csv",
       "rules": []
     }
   }

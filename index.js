@@ -14,7 +14,7 @@ const args = process.argv.slice(2);
 const runningMode = args[0] || 'searchHtml';
 const searchMode = args[1] || 'all';
 
-let config = require(__dirname + '/config.shop.json'),
+let config = require(__dirname + '/config.json'),
   encoding = config[runningMode].encoding || 'utf-8';
 
 if (runningMode !== 'replaceHtml' && searchMode === 'wontReplace') {
@@ -120,11 +120,12 @@ Counter.registerCounter(runningMode);
 Counter.registerCounter(runningMode + suffixForGlobalCounter);
 Counter.registerCounter('files');
 //console.log(config[runningMode].searchReplaceRules.file);
+
 try {
   config[runningMode].files.filteredFiles = fs.readFileSync(config[runningMode].searchReplaceRules.file, "utf8");
   //console.log(config[runningMode].files.filteredFiles);
 } catch (err) {
-  console.log('error in config[runningMode].files.filteredFiles :', err);
+  console.log(err);
   process.exit(1);
 }
 config[runningMode].searchReplaceRules.rules = returnPreparedUpgradeRulesFromCsvFile(config[runningMode].files.filteredFiles, runningMode);
@@ -143,7 +144,7 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
   try {
     fileToReplaceFileContent = fs.readFileSync(actualFile, encoding);
   } catch (err) {
-    console.log('error in fs.readFileSync(actualFile, :', err);
+    console.log(err);
     process.exit(1);
   }
 
@@ -159,7 +160,7 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
       try {
         fs.writeFileSync(actualFile, fileToReplaceFileContent);
       } catch (err) {
-        console.log('error in fs.writeFileSync(actualFile, fileToReplaceFileContent); :', err);
+        console.log(err);
         process.exit(1);
       }
     }
@@ -171,14 +172,11 @@ for (let i = 0; i < config[runningMode].files.filteredFiles.length; i++) {
 
 logMessage.displayCompleteMessage(Counter.returnCounter(runningMode + suffixForGlobalCounter), foundFiles.length, runningMode);
 
-// save file-list
-//console.log(foundFiles);
-
 if (runningMode === 'searchHtml' && searchMode === 'all') {
   try {
     fs.writeFileSync('output/search-html-found-files.txt', foundFiles.join("\n"));
   } catch (err) {
-    console.log('error in fs.writeFileSync(\'output\' + Date.now() + \'.txt\', config[runningMode].files.filteredFiles); :', err);
+    console.log(err);
     process.exit(1);
   }
 }

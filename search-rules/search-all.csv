@@ -133,9 +133,10 @@
 .pull-right,.float-right
 .pull-left,.float-left
 .center-block,.mx-auto
-.hidden-xs,.d-none
-.hidden-sm,.d-sm-none
-.hidden-md,.d-md-none
+.hidden-xs,.d-sm-none
+.hidden-sm,.d-md-none
+.hidden-md,.d-lg-none
+.hidden-lg,.d-xl-none
 .visible-xs,.d-block.d-sm-none
 .visible-sm,.d-block.d-md-none
 .visible-md,.d-block.d-lg-none

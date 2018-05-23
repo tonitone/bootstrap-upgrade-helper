@@ -122,14 +122,13 @@ Counter.registerCounter('files');
 //console.log(config[runningMode].searchReplaceRules.file);
 
 try {
-  config[runningMode].files.filteredFiles = fs.readFileSync(config[runningMode].searchReplaceRules.file, "utf8");
+  config[runningMode].searchReplaceRules.rules = fs.readFileSync(config[runningMode].searchReplaceRules.file, "utf8");
   //console.log(config[runningMode].files.filteredFiles);
 } catch (err) {
   console.log(err);
   process.exit(1);
 }
-config[runningMode].searchReplaceRules.rules = returnPreparedUpgradeRulesFromCsvFile(config[runningMode].files.filteredFiles, runningMode);
-
+config[runningMode].searchReplaceRules.rules = returnPreparedUpgradeRulesFromCsvFile(config[runningMode].searchReplaceRules.rules, runningMode);
 
 config[runningMode].files.filteredFiles = returnFilesBasedOnExtension(
   enfslist.listSync(config[runningMode].files.folder),

@@ -138,6 +138,7 @@
 .hidden-sm,.d-none.d-md-none
 .hidden-md,.d-none.d-lg-none
 .hidden-lg,.d-none.d-xl-none
+.hidden-print,.d-print-none
 .visible-xs,.d-block.d-sm-none
 .visible-sm,.d-block.d-md-none
 .visible-md,.d-block.d-lg-none

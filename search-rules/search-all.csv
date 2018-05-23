@@ -134,10 +134,10 @@
 .pull-left,.float-left
 .center-block,.mx-auto
 .hidden,.d-none
-.hidden-xs,.d-none.d-sm-none
-.hidden-sm,.d-none.d-md-none
-.hidden-md,.d-none.d-lg-none
-.hidden-lg,.d-none.d-xl-none
+.hidden-xs,.d-none.d-sm-block
+.hidden-sm,.d-none.d-md-block
+.hidden-md,.d-none.d-lg-block
+.hidden-lg,.d-none.d-xl-block
 .hidden-print,.d-print-none
 .visible-xs,.d-block.d-sm-none
 .visible-sm,.d-block.d-md-none

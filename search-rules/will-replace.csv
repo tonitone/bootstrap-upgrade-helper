@@ -133,6 +133,7 @@
 .pull-right,.float-right
 .pull-left,.float-left
 .center-block,.mx-auto
+.hide,.d-none
 .hidden,.d-none
 .hidden-xs,.d-none.d-sm-block
 .hidden-sm,.d-none.d-md-block
